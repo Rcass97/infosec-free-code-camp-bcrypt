@@ -45,6 +45,14 @@ bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
 
 //START_SYNC
 
+// Hashing synchronously is just as easy to do but can cause lag if using it server side with a high cost or with hashing done very often. Hashing with this method is as easy as calling
+
+var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+console.log(hash);
+
+// Add this method of hashing to your code and then log the result to the console. Again, the variables used are already defined in the server so you won't need to adjust them. You may notice even though you are hashing the same password as in the async function, the result in the console is different- this is due to the salt being randomly generated each time as seen by the first 22 characters in the third string of the hash. Now to compare a password input with the new sync hash, you would use the compareSync method:
+var result = bcrypt.compareSync(myPlaintextPassword, hash);
+console.log(result);
 
 
 //END_SYNC
