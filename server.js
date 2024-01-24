@@ -1,5 +1,5 @@
 'use strict';
-const express     = require('express');
+const express = require('express');
 
 // BCrypt hashes are very secure. A hash is basically a fingerprint of the original data- always unique. This is accomplished by feeding the original data into an algorithm and returning a fixed length result. To further complicate this process and make it more secure, you can also salt your hash. Salting your hash involves adding random data to the original data before the hashing process which makes it even harder to crack the hash.
 
@@ -7,9 +7,9 @@ const express     = require('express');
 const bcrypt = require('bcrypt');
 
 
-const bodyParser  = require('body-parser');
-const fccTesting  = require('./freeCodeCamp/fcctesting.js');
-const app         = express();
+const bodyParser = require('body-parser');
+const fccTesting = require('./freeCodeCamp/fcctesting.js');
+const app = express();
 fccTesting(app);
 const saltRounds = 12;
 const myPlaintextPassword = 'sUperpassw0rd!';
@@ -34,12 +34,12 @@ const someOtherPlaintextPassword = 'pass123';
 
 //START_ASYNC -do not remove notes, place code between correct pair of notes.
 
-bcrypt.hash('myCr@zyP@ssw0rd!', 13, (err, hash) => {
+bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
     console.log(hash);
-    bcrypt.compare('myCr@zyP@ssw0rd!', hash, (err, res) => {
-      console.log(res); //true
+    bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
+        console.log(res); //true
     });
-  });
+});
 
 //END_ASYNC
 
@@ -78,4 +78,4 @@ bcrypt.hash('myCr@zyP@ssw0rd!', 13, (err, hash) => {
 
 
 
-app.listen(process.env.PORT || 3000, () => {});
+app.listen(process.env.PORT || 3000, () => { });
